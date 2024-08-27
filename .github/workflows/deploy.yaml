@@ -21,7 +21,7 @@ jobs:
           repository: Subhanshu0027/Test-1
           token: ${{ secrets.PAT }}
           path: other-repo
-          ref: main
+          fetch-depth: 0  
 
       - name: Fetch all branches from the other repo
         run: |
