@@ -121,5 +121,6 @@ jobs:
         token: ${{ secrets.PAT }}
         repository: Subhanshu0027/Test-1
         event-type: event-1
+        ref: refs/heads/Prod-EN
          
 
