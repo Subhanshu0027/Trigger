@@ -18,7 +18,7 @@ jobs:
       - name: Checkout the repository with Prod-EN and Prod-FR branches
         uses: actions/checkout@v3
         with:
-          repository: Subhanshu0027/Test-1/other-repo-name
+          repository: Subhanshu0027/Test-1
           token: ${{ secrets.REPO_TOKEN }}
           path: other-repo
           ref: main
