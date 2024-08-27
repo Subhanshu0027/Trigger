@@ -3,7 +3,7 @@ name: Trigger Test-1 Workflows
 on:
   push:
     branches:
-      - main # The branch to monitor for changes
+      - main
 
 jobs:
   trigger:
@@ -18,7 +18,7 @@ jobs:
       - name: Checkout the repository with Prod-EN and Prod-FR branches
         uses: actions/checkout@v3
         with:
-          repository: Subhanshu0027/Test-1
+          repository: other-repo-owner/other-repo-name
           token: ${{ secrets.REPO_TOKEN }}
           path: other-repo
           ref: main
@@ -32,7 +32,6 @@ jobs:
         run: |
           latest_commit_message=$(git log -1 --pretty=%B origin/Prod-EN)
           echo "LATEST_COMMIT_EN=${latest_commit_message}" >> $GITHUB_ENV
-          echo "LATEST_COMMIT_EN=${latest_commit_message}"  # For debugging purposes
         working-directory: other-repo
 
       - name: Get the latest commit message in Prod-FR branch
@@ -40,14 +39,13 @@ jobs:
         run: |
           latest_commit_message=$(git log -1 --pretty=%B origin/Prod-FR)
           echo "LATEST_COMMIT_FR=${latest_commit_message}" >> $GITHUB_ENV
-          echo "LATEST_COMMIT_FR=${latest_commit_message}"  # For debugging purposes
         working-directory: other-repo
 
       - name: Trigger Prod-EN workflow in Test-1
         uses: peter-evans/repository-dispatch@v2
         with:
           repository: Subhanshu0027/Test-1
-          token: ${{ secrets.REPO_TOKEN }}  # Ensure this is correct
+          token: ${{ secrets.REPO_TOKEN }}
           event-type: trigger-prod-en
           client-payload: '{"commit_message": "${{ env.LATEST_COMMIT_EN }}"}'
 
@@ -55,6 +53,6 @@ jobs:
         uses: peter-evans/repository-dispatch@v2
         with:
           repository: Subhanshu0027/Test-1
-          token: ${{ secrets.REPO_TOKEN }}  # Ensure this is correct
+          token: ${{ secrets.REPO_TOKEN }}
           event-type: trigger-prod-fr
           client-payload: '{"commit_message": "${{ env.LATEST_COMMIT_FR }}"}'
