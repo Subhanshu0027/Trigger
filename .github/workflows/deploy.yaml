@@ -1,4 +1,4 @@
-name: Trigger Test-1 Workflow
+name: Trigger Test-1 Workflows
 
 on:
   push:
@@ -41,6 +41,11 @@ jobs:
           echo "LATEST_COMMIT_FR=${latest_commit_message}" >> $GITHUB_ENV
         working-directory: other-repo
 
+      - name: Log the Prod-EN payload
+        run: |
+          echo "Triggering Prod-EN workflow in Test-1 with the following payload:"
+          echo '{"event_type": "trigger-prod-en", "client_payload": {"commit_message": "${{ env.LATEST_COMMIT_EN }}"}}'
+
       - name: Trigger Prod-EN workflow in Test-1
         uses: peter-evans/repository-dispatch@v2
         with:
@@ -49,6 +54,14 @@ jobs:
           event-type: trigger-prod-en
           client-payload: '{"commit_message": "${{ env.LATEST_COMMIT_EN }}"}'
 
+      - name: Confirm Trigger for Prod-EN
+        run: echo "Prod-EN trigger request sent. Check the repository dispatch logs for details."
+
+      - name: Log the Prod-FR payload
+        run: |
+          echo "Triggering Prod-FR workflow in Test-1 with the following payload:"
+          echo '{"event_type": "trigger-prod-fr", "client_payload": {"commit_message": "${{ env.LATEST_COMMIT_FR }}"}}'
+
       - name: Trigger Prod-FR workflow in Test-1
         uses: peter-evans/repository-dispatch@v2
         with:
@@ -56,3 +69,6 @@ jobs:
           token: ${{ secrets.REPO_TOKEN }}
           event-type: trigger-prod-fr
           client-payload: '{"commit_message": "${{ env.LATEST_COMMIT_FR }}"}'
+
+      - name: Confirm Trigger for Prod-FR
+        run: echo "Prod-FR trigger request sent. Check the repository dispatch logs for details."
