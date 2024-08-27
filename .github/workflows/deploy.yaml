@@ -55,7 +55,7 @@ jobs:
           repository: Subhanshu0027/Test-1
           token: ${{ secrets.PAT }}
           event-type: trigger-prod-en
-          client-payload: '{"commit_message": "${{ env.LATEST_COMMIT_EN }}"}'
+          client-payload: '{"ref": "Prod-FR", "commit_message": "${{ env.LATEST_COMMIT_FR }}"}'
 
       - name: Confirm Trigger for Prod-EN
         run: echo "Prod-EN trigger request sent. Check the repository dispatch logs for details."
