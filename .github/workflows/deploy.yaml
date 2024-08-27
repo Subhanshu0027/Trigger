@@ -116,7 +116,7 @@ jobs:
 
     steps:
     - name: Trigger repository dispatch
-      uses: repo-sync/github-action-repo-dispatch@v1
+      uses: peter-evans/repository-dispatch@v3
       with:
         token: ${{ secrets.PAT }}
         repository: Subhanshu0027/Test-1
