@@ -27,15 +27,15 @@ jobs:
       - name: Trigger Prod-EN workflow in Test-1
         uses: peter-evans/repository-dispatch@v2
         with:
-          repository: your-org/Test-1
-          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: Subhanshu0027/Test-1
+          token: ${{ secrets.Repo_TOKEN }}
           event-type: trigger-prod-en
           client-payload: '{"commit_message": "${{ env.LATEST_COMMIT_EN }}"}'
 
       - name: Trigger Prod-FR workflow in Test-1
         uses: peter-evans/repository-dispatch@v2
         with:
-          repository: your-org/Test-1
-          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: Subhanshu0027/Test-1
+          token: ${{ secrets.Repo_TOKEN }}
           event-type: trigger-prod-fr
           client-payload: '{"commit_message": "${{ env.LATEST_COMMIT_FR }}"}'
