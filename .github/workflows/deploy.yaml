@@ -26,20 +26,22 @@ jobs:
       - name: Fetch all branches from the other repo
         run: |
           cd other-repo
-          git fetch origin
+          git fetch --all
 
-      - name: Get the latest commit message in Prod-EN branch
+      - name: Checkout Prod-EN branch and get latest commit message
         id: get_commit_en
         run: |
           cd other-repo
-          latest_commit_message=$(git log -1 --pretty=%B origin/Prod-EN)
+          git checkout Prod-EN
+          latest_commit_message=$(git log -1 --pretty=%B)
           echo "LATEST_COMMIT_EN=${latest_commit_message}" >> $GITHUB_ENV
 
-      - name: Get the latest commit message in Prod-FR branch
+      - name: Checkout Prod-FR branch and get latest commit message
         id: get_commit_fr
         run: |
           cd other-repo
-          latest_commit_message=$(git log -1 --pretty=%B origin/Prod-FR)
+          git checkout Prod-FR
+          latest_commit_message=$(git log -1 --pretty=%B)
           echo "LATEST_COMMIT_FR=${latest_commit_message}" >> $GITHUB_ENV
 
       - name: Log the Prod-EN payload
