@@ -67,7 +67,7 @@ jobs:
       #     echo "Triggering Prod-FR workflow in Test-1 with the following payload:"
       #     echo '{"event_type": "trigger-prod-fr", "client_payload": {"ref": "Prod-FR", "commit_message": "${{ env.LATEST_COMMIT_FR }}"}}'
 
-      - name: Trigger Prod-FR workflow in Test-1
+      - name: Run npm start and print commit hashes
         uses: peter-evans/repository-dispatch@v3.0.0
         with:
           repository: Subhanshu0027/Test-1
