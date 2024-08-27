@@ -120,5 +120,5 @@ jobs:
       with:
         token: ${{ secrets.PAT }}
         repository: Subhanshu0027/Test-1
-        event_type: my-event
+        event-type: my-event
 
