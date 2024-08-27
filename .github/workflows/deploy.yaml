@@ -105,7 +105,10 @@
 name: Trigger Repository Dispatch
 
 on:
-  workflow_dispatch:  # Allows manual triggering from the GitHub Actions UI
+  push:
+    branches:
+      - main
+  # workflow_dispatch:  # Allows manual triggering from the GitHub Actions UI
 
 jobs:
   trigger_dispatch:
