@@ -51,12 +51,12 @@ jobs:
           echo "Triggering Prod-EN workflow in Test-1 with the following payload:"
           echo '{"event_type": "event-1", "client_payload": {"ref": "Prod-EN", "commit_message": "${{ env.LATEST_COMMIT_EN }}"}}'
 
-      - name: Trigger Prod-EN workflow in Test-1
-        uses: peter-evans/repository-dispatch@v3.0.0
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v3
         with:
-          repository: Subhanshu0027/Test-1
           token: ${{ secrets.PAT }}
-          event-type: event-1
+          repository: Subhanshu0027/Test-1
+          event-type: my-event
           client-payload: '{"ref": "Prod-EN", "commit_message": "${{ env.LATEST_COMMIT_EN }}"}'
 
       - name: Confirm Trigger for Prod-EN
