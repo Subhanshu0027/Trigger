@@ -54,7 +54,7 @@ jobs:
         with:
           repository: Subhanshu0027/Test-1
           token: ${{ secrets.PAT }}
-          event-type: trigger-prod-en
+          event-type: event-1
           client-payload: '{"ref": "Prod-EN", "commit_message": "${{ env.LATEST_COMMIT_EN }}"}'
 
       - name: Confirm Trigger for Prod-EN
