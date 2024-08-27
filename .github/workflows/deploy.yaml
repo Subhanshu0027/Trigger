@@ -121,4 +121,5 @@ jobs:
         token: ${{ secrets.PAT }}
         repository: Subhanshu0027/Test-1
         event-type: my-event
+        client-payload: '{"branch": "Prod-EN"}'
 
