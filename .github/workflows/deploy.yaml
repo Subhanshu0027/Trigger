@@ -15,11 +15,6 @@ jobs:
         with:
           ref: main
 
-      - name: Set up Git to fetch all branches
-        run: |
-          git fetch origin Prod-EN
-          git fetch origin Prod-FR
-
       - name: Get the latest commit message in Prod-EN branch
         id: get_commit_en
         run: |
