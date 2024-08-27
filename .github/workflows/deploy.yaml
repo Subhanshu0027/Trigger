@@ -3,7 +3,7 @@ name: Trigger Test-1 Workflows
 on:
   push:
     branches:
-      - main # or any branch that you want to monitor for changes
+      - main # The branch to monitor for changes
 
 jobs:
   trigger:
@@ -12,17 +12,24 @@ jobs:
       - name: Checkout the trigger repo
         uses: actions/checkout@v3
 
+      - name: Set up Git
+        run: |
+          git fetch origin Prod-EN
+          git fetch origin Prod-FR
+
       - name: Get the latest commit message in Prod-EN branch
         id: get_commit_en
         run: |
           latest_commit_message=$(git log -1 --pretty=%B origin/Prod-EN)
-          echo "LATEST_COMMIT_EN=$latest_commit_message" >> $GITHUB_ENV
+          echo "LATEST_COMMIT_EN=${latest_commit_message//\"/\\\"}" >> $GITHUB_ENV
+          echo "LATEST_COMMIT_EN=${latest_commit_message}"  # For debugging purposes
 
       - name: Get the latest commit message in Prod-FR branch
         id: get_commit_fr
         run: |
           latest_commit_message=$(git log -1 --pretty=%B origin/Prod-FR)
-          echo "LATEST_COMMIT_FR=$latest_commit_message" >> $GITHUB_ENV
+          echo "LATEST_COMMIT_FR=${latest_commit_message//\"/\\\"}" >> $GITHUB_ENV
+          echo "LATEST_COMMIT_FR=${latest_commit_message}"  # For debugging purposes
 
       - name: Trigger Prod-EN workflow in Test-1
         uses: peter-evans/repository-dispatch@v2
