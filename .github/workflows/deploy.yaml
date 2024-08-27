@@ -50,7 +50,7 @@ jobs:
           echo '{"event_type": "trigger-prod-en", "client_payload": {"commit_message": "${{ env.LATEST_COMMIT_EN }}"}}'
 
       - name: Trigger Prod-EN workflow in Test-1
-        uses: peter-evans/repository-dispatch@v2
+        uses: peter-evans/repository-dispatch@v3.0.0
         with:
           repository: Subhanshu0027/Test-1
           token: ${{ secrets.PAT }}
@@ -66,7 +66,7 @@ jobs:
           echo '{"event_type": "trigger-prod-fr", "client_payload": {"commit_message": "${{ env.LATEST_COMMIT_FR }}"}}'
 
       - name: Trigger Prod-FR workflow in Test-1
-        uses: peter-evans/repository-dispatch@v2
+        uses: peter-evans/repository-dispatch@v3.0.0
         with:
           repository: Subhanshu0027/Test-1
           token: ${{ secrets.PAT }}
