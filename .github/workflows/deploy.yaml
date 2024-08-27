@@ -24,22 +24,23 @@ jobs:
           ref: main
 
       - name: Fetch all branches from the other repo
-        run: git fetch --all
-        working-directory: other-repo
+        run: |
+          cd other-repo
+          git fetch origin
 
       - name: Get the latest commit message in Prod-EN branch
         id: get_commit_en
         run: |
+          cd other-repo
           latest_commit_message=$(git log -1 --pretty=%B origin/Prod-EN)
           echo "LATEST_COMMIT_EN=${latest_commit_message}" >> $GITHUB_ENV
-        working-directory: other-repo
 
       - name: Get the latest commit message in Prod-FR branch
         id: get_commit_fr
         run: |
+          cd other-repo
           latest_commit_message=$(git log -1 --pretty=%B origin/Prod-FR)
           echo "LATEST_COMMIT_FR=${latest_commit_message}" >> $GITHUB_ENV
-        working-directory: other-repo
 
       - name: Log the Prod-EN payload
         run: |
